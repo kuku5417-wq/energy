@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>시운전 에너지 데이터 수집 로드맵 2026–2030</title>
-<meta name="description" content="총 에너지 비용 판단용 6종 데이터를 수기 취합에서 선박 데이터 직결까지 올리는 단계별 스윔레인. 원본: 01_시운전에너지모니터링_로드맵_v0.5.md §6">
+<meta name="description" content="총 에너지 비용 판단용 6종 데이터를 수기 취합에서 선박 데이터 직결까지 올리는 단계별 스윔레인. 원본: 01_시운전에너지모니터링_로드맵_v0.6.md §6">
 <style>
   /* shi-blue 토큰 인라인 사본 — design-system-with-git/shi-blue/tokens.css 가 정본 */
   :root {
@@ -20,7 +20,7 @@
     --mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
     /* 세대 색 — 회색 → 연청 → 청 → 네이비 순으로 진해진다 */
-    --g0-bg: transparent;  --g0-fg: var(--text-faint); --g0-edge: var(--none-edge);
+    --g0-bg: transparent;  --g0-fg: var(--none-fg); --g0-edge: var(--none-edge);
     --g1-bg: var(--tint-none); --g1-fg: var(--none-fg); --g1-edge: var(--none-edge);
     --g2-bg: var(--tint-accent); --g2-fg: #123F8A; --g2-edge: #B9D0F5;
     --g3a-bg: #0056D2; --g3a-fg: #FFFFFF; --g3a-edge: #0056D2;
@@ -56,7 +56,7 @@
   h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
   .sub { color: var(--text-muted); margin: 0; }
   .sub b { color: var(--text-primary); }
-  .meta { color: var(--text-faint); font-size: 12px; font-family: var(--mono); }
+  .meta { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
 
   .legend { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 0 0 14px; }
   .legend .k { color: var(--text-muted); font-size: 12px; margin-right: 2px; }
@@ -89,7 +89,7 @@
   @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .group { color: #123F8A; } }
   .lab { font-weight: 600; display: flex; gap: 8px; align-items: flex-start; }
   .lab .n { font-family: var(--mono); color: var(--shi-accent); font-size: 14px; line-height: 1.2; }
-  .lab small { display: block; font-weight: 400; color: var(--text-faint); font-size: 11px; margin-top: 2px; }
+  .lab small { display: block; font-weight: 400; color: var(--text-muted); font-size: 11px; margin-top: 2px; }
 
   .cell { display: block; }
   .cell .tag { display: block; margin-bottom: 3px; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--text-faint); }
@@ -103,7 +103,7 @@
   .cell.g3b { background: var(--g3b-bg); color: var(--g3b-fg); }
   .cell.g3 { background: var(--g3-bg); color: var(--g3-fg); }
   .cell.task { background: var(--task-bg); color: var(--task-fg); }
-  .cell.g0 { color: var(--text-faint); }
+  .cell.g0 { color: var(--text-muted); }
   .cell code { font-family: var(--mono); font-size: 11px; }
 
   /* ── 상단 요약 로드맵 — 변화 × 3줄 (03 경영보고와 같은 뼈대) ── */
@@ -175,9 +175,9 @@
 <header>
   <div>
     <h1>시운전 에너지 데이터 수집 로드맵 2026–2030</h1>
-    <p class="sub">안벽 호선을 매 시각 <b>육전으로 둘지 발전기로 돌릴지</b> — <b>총 에너지 비용(전기요금+유류비)이 싼 쪽</b>을 고르는 데 필요한 <b>6종 데이터</b>를 수기 취합 → 선박 데이터 직결로 올리는 계획</p>
+    <p class="sub">안벽 호선을 매 시각 <b>육전으로 둘지 발전기로 돌릴지</b> — <b>총 에너지 비용(전기요금+유류비)이 싼 쪽</b>을 고르는 데 필요한 <b>6종 데이터</b>를 수기 취합 → <b>ICMS 상시 연결</b>로 올리는 계획</p>
   </div>
-  <div class="meta">시운전팀 · 2026-09-23 · v0.5 · 사내한</div>
+  <div class="meta">시운전팀 · 2026-09-23 · v0.6 · 사내한</div>
 </header>
 
 <!-- ── 1) 한눈에 — 무엇이 바뀌면 무엇을 할 수 있게 되는가 ── -->
@@ -186,19 +186,19 @@
   <div class="hd now">지금<small>2026 상반기</small></div>
   <div class="hd">2026<small>재기 시작한다</small></div>
   <div class="hd">2027<small>1년치가 쌓인다</small></div>
-  <div class="hd">2028 이후<small>배가 스스로 잰다</small></div>
+  <div class="hd">2028 이후<small>배에서 바로 받는다</small></div>
 
   <div class="lb">무엇이<br>바뀌나</div>
   <div class="c dim">바뀌는 것 없음. 사람이 하루 한 번 연료만 적는다</div>
   <div class="c"><span class="step">우리가 만드는 변화</span><b>logbook</b> 발전기 운전일지 + 호선 <b>shore connection 측정기</b> + 조선소 <b>수요전력 시스템 연동</b></div>
   <div class="c"><span class="step">데이터가 쌓인다</span>호선별·시간대별로 비교 가능한 <b>1년치</b>. 유류 일일 입력 정식화(엑셀 폐지)</div>
-  <div class="c"><span class="step">선박 기술 변화</span><b>SVESSEL 탑재 호선 확대</b> → 사내 API 수신. 이어서 <b>ICMS 선별 태그 송출</b>로 나머지 호선까지</div>
+  <div class="c"><span class="step">가설을 없앤다</span>배에 이미 있는 <b>ICMS 에서 필수 태그를 지정해 연결</b>한다. 기종·SVESSEL 유무와 무관한 단일 경로. <b>측정기를 달았다 떼는 일이 사라진다</b></div>
 
   <div class="lb">그래서<br>할 수 있는 일</div>
   <div class="c dim">없다. 월말에 총량만 안다</div>
   <div class="c">어느 전원으로 얼마를 <b>왜</b> 썼는지 시간대별로 본다 · 불가피/확인대상 가동 분류</div>
   <div class="c"><b>레버 A</b> 확인대상 가동 축소 · <b>레버 B</b> 피크 절체 시범</div>
-  <div class="c">수기 없이 데이터가 들어온다 · 관제 실시간 판단 · 피크컷 자동 지시</div>
+  <div class="c">총 부하 + ACB 상태로 <b>②③ 동시 실측</b> · 관제 실시간 판단 · 피크컷 자동 지시</div>
 
   <div class="lb">얻는 것</div>
   <div class="c gain none">—</div>
@@ -206,7 +206,7 @@
   <div class="c gain">총비용 절감액 실측<br>유류비 + 기본요금</div>
   <div class="c gain">수기 입력 없이<br>상시 최적 운전</div>
 </div>
-<p class="lead2"><b>2026·2027 은 우리가 만드는 변화</b>(앱·측정기·연동), <b>2028 이후는 선박 기술 흐름에 올라타는 것</b>(PMS·ICMS 는 전 호선 기본 사양이라 계측이 아니라 <b>송출</b>만 하면 된다).
+<p class="lead2"><b>2026·2027 은 우리가 만드는 변화</b>(앱·가설 측정기·연동), <b>2028 은 가설을 걷어내는 단계</b> — PMS·ICMS 는 전 호선 기본 사양이라 계측이 아니라 <b>연결</b>만 하면 된다. SVESSEL 로 경로를 가르지 않는다(미설치 호선은 대부분 Kongsberg ICMS, 설치돼도 늦게 살리면 초기가 누락된다).
  절감 레버는 둘 — <b>레버 A</b> 평시 불필요 발전기 가동 축소(유류비, ③⑥ 만으로 가능해 수요전력 연동을 기다리지 않는다) · <b>레버 B</b> 피크 절체(기본요금, 측정기+연동 필요).</p>
 
 <h2 class="sec">2) 항목별 상세 — 6종 데이터가 단계마다 어떻게 수집되나<small>위 로드맵을 데이터 항목으로 펼친 것. 셀 = 그 단계에 도달하는 수집 방법</small></h2>
@@ -216,9 +216,8 @@
   <span class="chip g0">없음 / 부분</span>
   <span class="chip g1">수기 (logbook · 사운딩)</span>
   <span class="chip g2">조선소 계측기 · 반자동 · 기존 시스템 연동</span>
-  <span class="chip g3a">3단계 SVESSEL 탑재 호선 수신</span>
-  <span class="chip g3b">4단계 ICMS 선별 태그 송출</span>
-  <span class="chip g3">표준 (전 호선 자동)</span>
+  <span class="chip g3b">4단계 ICMS 필수 태그 연결</span>
+  <span class="chip g3">표준 (전 호선 상시 연결)</span>
   <span class="chip task">당사 숙제 · 벤더 협의(영업 경유)</span>
 </div>
 
@@ -227,57 +226,57 @@
 
   <div class="corner">데이터 ＼ 단계</div>
   <div class="yr">1단계<small>현재 (2026-09)</small></div>
-  <div class="yr">2단계 · 2026 목표<small>logbook + shore connection 측정기</small></div>
-  <div class="yr">3단계 · 2027<small>피크 절체 시범 · SVESSEL 수신</small></div>
-  <div class="yr">4단계 · 2028<small>ICMS 선별 태그 송출</small></div>
-  <div class="yr">표준 · 2029–30<small>전 호선 자동 · 무인 판단</small></div>
+  <div class="yr">2단계 · 2026 목표<small>logbook + 가설 측정기</small></div>
+  <div class="yr">3단계 · 2027<small>절감 실행 · 피크 시범 · 태그 확정</small></div>
+  <div class="yr">4단계 · 2028<small>ICMS 필수 태그 연결</small></div>
+  <div class="yr">표준 · 2029–30<small>전 호선 상시 연결</small></div>
 
-  <div class="group">유류 트랙</div>
+  <div class="group">얼마나 썼나</div>
   <div class="lab"><span class="n">①</span><div>유류 사용량<small>탱크 사운딩 → 유량계</small></div></div>
   <div class="cell g1"><span class="tag">수기</span>기간(일정구분) 취합 엑셀 + 일 1회 사운딩 앱 파일럿(<code>test_</code>)</div>
   <div class="cell g1"><span class="tag">수기 유지</span>logbook 의 발전기 운전시간 × SFOC 로 기대 소비량 교차검증</div>
-  <div class="cell g3a"><span class="tag">정식 + SVESSEL</span>일일 입력 정식 · 기간 산출 자동 · 엑셀 폐지 · SVESSEL 2척 유량계 값 수신</div>
-  <div class="cell g3b"><span class="tag">ICMS</span>미탑재 호선 ICMS 유량 송출</div>
+  <div class="cell g2"><span class="tag">정식화</span>일일 입력 정식 · 기간 산출 자동 · <b>월 엑셀 폐지</b></div>
+  <div class="cell g3b"><span class="tag">ICMS</span>유량계 · 탱크 레벨 태그 연결 — 분 단위 실측</div>
   <div class="cell g3"><span class="tag">표준</span>전 호선 자동 · 사운딩 폐지 · 대체연료 포함</div>
 
-  <div class="group">전기 트랙</div>
-  <div class="lab"><span class="n">②</span><div>육상전력<small>shore connection</small></div></div>
+  <div class="lab"><span class="n">②</span><div>전기 사용량<small>선내 총 부하 kW·kWh</small></div></div>
   <div class="cell g1"><span class="tag">수기</span>접속점 적산계 누적 kWh 일 1회 (앱 밖)</div>
-  <div class="cell g2"><span class="tag">측정기 · 자동</span><b>shore connection 측정기</b> 15분 자동 → parquet</div>
-  <div class="cell g2"><span class="tag">정렬</span>조선소 수요전력과 시각 정렬 · SVESSEL 호선은 PMS 값과 교차검증</div>
-  <div class="cell g3b"><span class="tag">ICMS</span>PMS 육전 수전 kW 송출(교차검증)</div>
+  <div class="cell g2"><span class="tag">가설 · 자동</span><b>shore connection 측정기</b> 15분 자동 — <b>육전 구간만</b> 실측(발전기 구간은 0)</div>
+  <div class="cell g2"><span class="tag">정렬</span>조선소 수요전력과 시각 정렬 → 피크 시범에 사용</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>선내 <b>총 부하</b> 태그 수신 → 실측 전환 · <b>가설 철수</b></div>
   <div class="cell g3"><span class="tag">표준</span>실시간 · 피크 여유 표시</div>
 
-  <div class="lab"><span class="n">③</span><div>발전기 생산 전력<small>PMS 발전기별 kW</small></div></div>
-  <div class="cell g0">없음</div>
-  <div class="cell g1"><span class="tag">logbook</span>운전일지 — 기동/정지 · 부하% · 대수</div>
-  <div class="cell g3a"><span class="tag">SVESSEL</span>PMS 발전기별 kW·kWh 수신 (파일럿)</div>
-  <div class="cell g3b"><span class="tag">ICMS</span>선별 태그 송출 — PMS kW · 차단기 상태</div>
+  <div class="lab"><span class="n">③</span><div>급전 원천<small>육전 / 발전기</small></div></div>
+  <div class="cell g0">기록 없음 — ②의 비용·탄소가 계산되지 않는다</div>
+  <div class="cell g2"><span class="tag">반자동</span>logbook 절체 기록 + <b>측정기 전류 0</b> 으로 판별. 발전기 발전량은 운전일지 <b>추정</b></div>
+  <div class="cell g2"><span class="tag">활용</span>평시/피크 구간을 갈라 절감 실행</div>
+  <div class="cell g3b"><span class="tag">ICMS</span><b>발전기 ACB 상태</b> 태그 — 자동. ②와 묶여 ②③ 동시 실측</div>
   <div class="cell g3"><span class="tag">표준</span>실시간 · 실측 SFOC(①×③)</div>
 
-  <div class="group">부가 속성 — 유류·전력 값에 붙는 태그 (2단계는 logbook 이 한꺼번에)</div>
-  <div class="lab"><span class="n">④</span><div>가동 장비<small>원천 태그 SHORE/GEN</small></div></div>
+  <div class="group">어디에 썼나 — 소비처 분석 (2단계는 logbook 이 한꺼번에)</div>
+  <div class="lab"><span class="n">④</span><div>가동 장비<small>무엇을 돌렸나</small></div></div>
   <div class="cell g0">연료 감소 시에만 장비+대수</div>
-  <div class="cell g1"><span class="tag">logbook</span>일별 체크리스트 + 원천 태그 (항목 6~8종)</div>
-  <div class="cell g3a"><span class="tag">SVESSEL</span>ICMS 장비 운전 상태 (파일럿)</div>
-  <div class="cell g3b"><span class="tag">ICMS</span>운전 상태 송출로 자동</div>
+  <div class="cell g1"><span class="tag">logbook</span>일별 체크리스트 (항목 6~8종으로 제한)</div>
+  <div class="cell g1"><span class="tag">집계</span>장비·사유별 집계 시작</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>장비 운전 상태(running)에서 자동</div>
   <div class="cell g3"><span class="tag">표준</span>자동 · 장비별 원단위</div>
 
-  <div class="lab"><span class="n">⑤</span><div>운전방법<small>모드 코드 5종</small></div></div>
+  <div class="lab"><span class="n">⑤</span><div>운전방법<small>어떻게 운전했나</small></div></div>
   <div class="cell g0">없음</div>
-  <div class="cell g2"><span class="tag">logbook + 측정기</span>절체 기록(모드·시각) + 측정기 전류 0 으로 절체 추정</div>
-  <div class="cell g3a"><span class="tag">SVESSEL</span>PMS 차단기 상태로 절체 자동 (파일럿)</div>
-  <div class="cell g3b"><span class="tag">ICMS</span>차단기 상태 송출로 자동</div>
-  <div class="cell g3"><span class="tag">표준</span>자동 · 모드 체류 통계</div>
+  <div class="cell g1"><span class="tag">1차 · logbook</span>사람이 적는다. <b>입력 항목은 미정</b> — 현장과 정해 최소로 시작</div>
+  <div class="cell g1"><span class="tag">축적 · 검토</span>1차 데이터 축적 · <b>2차 분석 방법 검토 착수</b></div>
+  <div class="cell task"><span class="tag">2차 · 검토 과제</span><b>ICMS 데이터 분석</b> — 방법 미정, 많은 고민이 필요하다</div>
+  <div class="cell g3"><span class="tag">표준</span>분석 결과를 원단위에 반영</div>
 
+  <div class="group">왜 썼나 — 레버 A 의 열쇠</div>
   <div class="lab"><span class="n">⑥</span><div>발전기 가동 사유<small>사유 코드 5종</small></div></div>
   <div class="cell g0">4종 · 연료 감소 시에만</div>
-  <div class="cell g1"><span class="tag">logbook · 레버 A 열쇠</span>사유 코드 5종 · 매 기동 필수 → <b>불가피</b>(<code>TRIAL</code>·<code>LOAD_TEST</code>·<code>SHORE_NA</code>) / <b>확인 대상</b>(<code>ETC</code>) 분류</div>
-  <div class="cell g2"><span class="tag">절감 실행</span>확인 대상 가동 축소(레버 A) · <code>PEAK_CUT</code> 기록 · 사유별 kWh·L 집계</div>
-  <div class="cell g3b"><span class="tag">자동 태깅</span><code>TRIAL</code>·<code>LOAD_TEST</code> 는 process 순서도에서</div>
-  <div class="cell g3"><span class="tag">표준</span><code>PEAK_CUT</code> 관제 자동 · <code>SHORE_NA</code>·<code>ETC</code> 만 수기</div>
+  <div class="cell g1"><span class="tag">logbook · 매 기동</span>사유 코드 5종 필수 → <b>불가피</b>(<code>TRIAL</code>·<code>LOAD_TEST</code>·<code>SHORE_NA</code>) / <b>확인 대상</b>(<code>ETC</code>) 분류</div>
+  <div class="cell g2"><span class="tag">절감 실행</span>확인 대상 가동 축소(레버 A) · <code>PEAK_CUT</code> 기록</div>
+  <div class="cell g3b"><span class="tag">일부 자동</span><code>TRIAL</code>·<code>LOAD_TEST</code> 는 process 순서도에서</div>
+  <div class="cell g1"><span class="tag">계속 수기</span><code>SHORE_NA</code>·<code>ETC</code> — <b>왜 돌렸는지는 사람만 안다</b></div>
 
-  <div class="group">기반 — 판단식 참조 데이터 · 송출 태그</div>
+  <div class="group">기반 — 판단식 참조 데이터 · ICMS 태그</div>
   <div class="lab"><span class="n">참조</span><div>조선소 수요전력 · 요금표<small>시스템 이미 있음 · <b>레버 B 에만</b> 필요</small></div></div>
   <div class="cell g0">시스템 있음 · 미연동 · 요금표 없음</div>
   <div class="cell g2"><span class="tag">연동</span>수요전력 시스템 15분 값 수신 + 전기요금표 등록</div>
@@ -285,29 +284,29 @@
   <div class="cell g3b"><span class="tag">통합</span>관제 화면에 호선 부하·피크 여유 통합</div>
   <div class="cell g3"><span class="tag">활용</span>피크컷 자동 지시</div>
 
-  <div class="lab"><span class="n">태그</span><div>송출 태그 선별 · 협의<small>PMS·ICMS 는 기본 사양</small></div></div>
+  <div class="lab"><span class="n">태그</span><div>ICMS 필수 태그<small>기종·SVESSEL 무관 단일 경로</small></div></div>
   <div class="cell g0">—</div>
   <div class="cell task"><span class="tag">당사 숙제</span>태그 선별 초안 — 6종 → ICMS/PMS 태그 목록</div>
-  <div class="cell task"><span class="tag">당사 숙제 → 협의</span>SVESSEL 커버리지 확인 · 송출 표준 사양 · 벤더 협의 착수(영업)</div>
-  <div class="cell task"><span class="tag">적용</span>선별 태그 송출 프로그래밍 적용</div>
-  <div class="cell task"><span class="tag">확정</span>표준 사양 확정 — 호선마다 재협의 없음</div>
+  <div class="cell task"><span class="tag">확정 → 협의</span>목록 확정 · 표준 사양 · <b>벤더 협의(영업 경유)</b></div>
+  <div class="cell task"><span class="tag">적용</span>호선별 태그 매핑 · 수신기 연결</div>
+  <div class="cell task"><span class="tag">정착</span>표준 사양 — 호선마다 재협의 없음</div>
 
   <div class="corner" style="align-items:center">마일스톤</div>
   <div class="ms"><span class="now">현황 확정</span></div>
-  <div class="ms"><b>M1</b>6종 전부 존재 · 절체 판단 가능</div>
-  <div class="ms"><b>M2</b>절감 효과 산정 · SVESSEL 2척</div>
-  <div class="ms"><b>M3</b>ICMS 송출 · 절체 자동 감지</div>
+  <div class="ms"><b>M1</b>6종 확보 · 평시 가동 실태 파악</div>
+  <div class="ms"><b>M2</b>총비용 절감액 실측(A+B)</div>
+  <div class="ms"><b>M3</b>ICMS 연결 · 가설 철수 착수</div>
   <div class="ms"><b>M4</b>절체 판단 무개입</div>
 
 </div>
 </div>
 
-<p class="foot">단계는 반년씩 겹친다(앞 단계 안정화 + 다음 단계 파일럿 병행). 2026 이 끝나면 레버 A·B 둘 다 판단 가능해진다. 3·4단계는 새 계측기를 다는 일이 아니라 <b>배가 이미 갖고 있는 PMS·ICMS 값을 밖으로 내보내는 일</b>이고, 지점이 같고 전송 경로만 다르다. 원본: <code>01_시운전에너지모니터링_로드맵_v0.5.md</code> §6.</p>
+<p class="foot">단계는 반년씩 겹친다. 2026 이 끝나면 레버 A·B 둘 다 판단 가능해진다. <b>②와 ③은 따로 재는 항목이 아니다</b> — ICMS 가 보는 것은 선내 총 부하 하나이고, 육전인지 발전기인지는 <b>발전기 ACB 상태</b>로 갈린다. 그래서 발전기 쪽에 계측기를 따로 달지 않는다. 원본: <code>01_시운전에너지모니터링_로드맵_v0.6.md</code> §6.</p>
 
 <details open>
   <summary>왜 발전기를 돌리는가 — 판단 구조</summary>
   <div class="inner why">
-    <div><h4>택1</h4><p>호선 급전은 어느 시각이든 육전 아니면 발전기 하나. 전력 사용량 ↑ ⇔ 유류 사용량 ↓.</p></div>
+    <div><h4>택1</h4><p>호선 급전은 어느 시각이든 육전 아니면 발전기 하나. 그래서 <b>전기량(②)은 하나의 총 부하</b>이고, 비용을 가르는 것은 <b>급전 원천(③)</b>이다.</p></div>
     <div><h4>비용 구조가 다르다</h4><p>전기요금 = 기본요금(<b>피크 kW</b> × 단가 × 산정 개월) + 전력량요금. 유류비 = L × 유가. 평시 kWh 단가는 육전이 싸다.</p></div>
     <div><h4>발전기의 용도 = 피크 컷</h4><p>조선소 피크 시간대에 호선을 발전기로 절체하면 피크가 내려가 기본요금이 준다. 기본요금 절감 &gt; 그 시간대 연료비 증가면 이득.</p></div>
     <div><h4>그래서 6종이 같은 시각 축에 있어야</h4><p>"지금 이 호선이 어느 원천으로, 몇 kW 를, 왜 쓰고 있나"를 15분 단위로 답할 수 있어야 절체 판단이 된다.</p></div>
@@ -318,44 +317,46 @@
   <summary>측정 지점 · 방법 요약 (단계별)</summary>
   <div class="inner">
   <table>
-    <thead><tr><th style="width:130px">데이터</th><th>1단계 · 현재</th><th>2단계 · 2026 (logbook · 측정기)</th><th>3단계 · SVESSEL 탑재 호선</th><th>4단계 · ICMS 송출 호선</th></tr></thead>
+    <thead><tr><th style="width:120px">데이터</th><th>1단계 · 현재</th><th>2단계 · 2026 (logbook · 가설 측정기)</th><th>3단계 · 2027</th><th>4단계 · 2028~ (ICMS 필수 태그 연결)</th></tr></thead>
     <tbody>
       <tr><td><b>① 유류 사용량</b></td>
         <td><span class="p">연료 탱크(사운딩 파이프)</span><span class="m">기간 시작·끝 잔량 차이 + 수급량 → 월 엑셀(정식) · 일 1회 사운딩 앱 입력(파일럿)</span></td>
         <td><span class="p">연료 탱크</span><span class="m">수기 유지. logbook 의 발전기 운전시간 × SFOC 로 기대 소비량을 산출해 교차검증</span></td>
-        <td><span class="p">주기관·발전기 연료 공급/리턴 유량계 + 탱크 레벨 센서(기본 사양)</span><span class="m">ICMS → SVESSEL → 사내 API</span></td>
-        <td><span class="p">동일</span><span class="m">ICMS 선별 태그 송출 → 조선소 수신 게이트웨이</span></td></tr>
-      <tr><td><b>② 육상전력</b></td>
+        <td><span class="m">일일 입력 정식화 · 기간 산출 자동 · 월 엑셀 폐지</span></td>
+        <td><span class="p">연료 공급/리턴 유량계 + 탱크 레벨(기본 사양)</span><span class="m">ICMS 태그 연결 — 분 단위 실측</span></td></tr>
+      <tr><td><b>② 전기 사용량</b><br><span style="font-weight:400;font-size:11px">선내 총 부하</span></td>
         <td><span class="p">안벽 육전 접속점 적산 전력계</span><span class="m">누적 kWh 일 1회 판독 → 수기</span></td>
-        <td><span class="p"><b>선박 shore connection box</b></span><span class="m">조선소 자산 측정기 15분 자동 → parquet. 선박 쪽이라 호선별 분리가 자연히 된다</span></td>
-        <td><span class="p">선내 육전 수전반 전력계 → PMS</span><span class="m">SVESSEL. 육상 계측기가 있으므로 교차검증 용도</span></td>
-        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
-      <tr><td><b>③ 발전기 생산 전력</b></td>
-        <td>없음</td>
-        <td><span class="p">발전기 패널 계기(배전반 kW 미터)</span><span class="m"><b>logbook</b> 운전일지 — 기동/정지 시각 · 부하% · 대수 수기</span></td>
-        <td><span class="p">발전기별 ACB 패널 전력계 → PMS(기본 사양)</span><span class="m">SVESSEL</span></td>
-        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
-      <tr><td><b>④ 가동 장비</b></td>
+        <td><span class="p"><b>선박 shore connection box (가설)</b></span><span class="m">조선소 자산 측정기 15분 자동 → parquet. <b>육전 구간만 실측</b>되고 발전기 구간은 0 이다</span></td>
+        <td><span class="m">조선소 수요전력과 시각 정렬 → 피크 시범에 사용</span></td>
+        <td><span class="p">선내 주배전반 <b>총 부하</b></span><span class="m">ICMS/PMS 태그 → 실측 전환 · <b>가설 철수</b></span></td></tr>
+      <tr><td><b>③ 급전 원천</b><br><span style="font-weight:400;font-size:11px">육전 / 발전기</span></td>
+        <td>기록 없음 — ②의 비용·탄소가 계산되지 않는다</td>
+        <td><span class="p">가설 측정기 + 발전기 패널 계기</span><span class="m">logbook 절체 기록 + <b>측정기 전류 0</b> 으로 판별. 발전기 발전량은 운전일지(기동/정지·부하%·대수)로 <b>추정</b></span></td>
+        <td><span class="m">평시/피크 구간을 갈라 절감 실행</span></td>
+        <td><span class="p"><b>발전기 ACB 상태</b> → PMS</span><span class="m">ICMS 태그 — 자동. ②와 묶여 ②③ 동시 실측</span></td></tr>
+      <tr><td><b>④ 가동 장비</b><br><span style="font-weight:400;font-size:11px">무엇을 돌렸나</span></td>
         <td><span class="m">연료 감소 시에만 장비+대수 선택</span></td>
-        <td><span class="p">없음(작업자 기억)</span><span class="m">logbook 일별 체크리스트 + 원천 태그(항목 6~8종)</span></td>
-        <td><span class="p">ICMS 장비 운전 상태(running/stop)</span><span class="m">SVESSEL</span></td>
-        <td><span class="p">동일</span><span class="m">ICMS 선별 태그 송출</span></td></tr>
-      <tr><td><b>⑤ 운전방법</b></td>
+        <td><span class="p">없음(작업자 기억)</span><span class="m">logbook 일별 체크리스트 (항목 6~8종)</span></td>
+        <td><span class="m">장비·사유별 집계 시작</span></td>
+        <td><span class="p">ICMS 장비 운전 상태(running/stop)</span><span class="m">ICMS 태그 — 자동</span></td></tr>
+      <tr><td><b>⑤ 운전방법</b><br><span style="font-weight:400;font-size:11px">어떻게 운전했나</span></td>
         <td>없음</td>
-        <td><span class="p">shore connection 측정기</span><span class="m">logbook 절체 기록(모드·시각) + 측정기 전류 0 여부로 절체 추정</span></td>
-        <td><span class="p">PMS 차단기 상태(육전 ACB · 발전기 ACB · 버스타이)</span><span class="m">SVESSEL → 절체 이벤트 자동</span></td>
-        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
-      <tr><td><b>⑥ 발전기 가동 사유</b></td>
+        <td><span class="m"><b>1차 = logbook.</b> 사람이 적는다 — <b>입력 항목은 아직 미정</b>, 현장과 정해 최소로 시작</span></td>
+        <td><span class="m">1차 데이터 축적 · 2차 분석 방법 검토 착수</span></td>
+        <td><span class="m"><b>2차 = ICMS 데이터 분석 — 검토 과제.</b> 방법 미정, 많은 고민이 필요하다</span></td></tr>
+      <tr><td><b>⑥ 발전기 가동 사유</b><br><span style="font-weight:400;font-size:11px">왜 돌렸나</span></td>
         <td><span class="m">사유 4종, 연료 감소 시에만</span></td>
-        <td><span class="m">logbook 매 기동 사유 코드 5종 필수</span></td>
-        <td colspan="2"><span class="m"><code>TRIAL</code>·<code>LOAD_TEST</code> → process 순서도에서 자동 / <code>PEAK_CUT</code> → 관제 지시에서 자동 / <code>SHORE_NA</code>·<code>ETC</code> 만 수기</span></td></tr>
+        <td><span class="m">logbook 매 기동 사유 코드 5종 필수 → 불가피 / 확인 대상 분류</span></td>
+        <td><span class="m">확인 대상 가동 축소(레버 A) · <code>PEAK_CUT</code> 기록</span></td>
+        <td><span class="m"><code>TRIAL</code>·<code>LOAD_TEST</code> 는 process 순서도에서 자동 / <b><code>SHORE_NA</code>·<code>ETC</code> 는 계속 수기</b> — 왜 돌렸는지는 사람만 안다</span></td></tr>
       <tr><td><b>참조 수요전력</b></td>
         <td><span class="m">조선소 전력관리 시스템(한전 15분) 있음 · 미연동</span></td>
         <td><span class="m"><b>연동</b> — 15분 값을 parquet 으로 수신 + 전기요금표 등록</span></td>
-        <td colspan="2"><span class="m">피크 절체 시범(3단계) → 관제 자동 지시(표준)</span></td></tr>
+        <td><span class="m">피크 절체 시범 · 절감 효과 산정</span></td>
+        <td><span class="m">관제 화면 통합 → 피크컷 자동 지시(표준)</span></td></tr>
     </tbody>
   </table>
-  <p class="foot">3·4단계 공통 선행 작업: <b>송출 태그 선별</b>(당사 숙제) — 위 표의 3단계 "지점" 열이 곧 태그 목록의 골격이다.</p>
+  <p class="foot">4단계 선행 작업: <b>ICMS 필수 태그 선별</b>(당사 숙제, 2026 하반기 착수) — 위 표의 4단계 "지점" 열이 곧 태그 목록의 골격이다. 기종·SVESSEL 유무와 무관한 <b>단일 경로</b>로 간다.</p>
   </div>
 </details>
 

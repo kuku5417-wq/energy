@@ -237,7 +237,7 @@
   <div class="cell g1"><span class="tag">수기 유지</span>logbook 의 발전기 운전시간 × SFOC 로 기대 소비량 교차검증</div>
   <div class="cell g2"><span class="tag">정식화</span>일일 입력 정식 · 기간 산출 자동 · <b>월 엑셀 폐지</b></div>
   <div class="cell g3b"><span class="tag">ICMS</span>유량계 · 탱크 레벨 태그 연결 — 분 단위 실측</div>
-  <div class="cell g3"><span class="tag">표준</span>전 호선 자동 · 사운딩 폐지 · 대체연료 포함</div>
+  <div class="cell g3"><span class="tag">표준</span>전 호선 자동 · <b>사운딩은 필수 항목만</b>(수급·이송·유량계 검증) · 대체연료 포함</div>
 
   <div class="lab"><span class="n">②</span><div>전기 사용량<small>선내 총 부하 kW·kWh</small></div></div>
   <div class="cell g1"><span class="tag">수기</span>접속점 적산계 누적 kWh 일 1회 (앱 밖)</div>
@@ -323,7 +323,7 @@
         <td><span class="p">연료 탱크(사운딩 파이프)</span><span class="m">기간 시작·끝 잔량 차이 + 수급량 → 월 엑셀(정식) · 일 1회 사운딩 앱 입력(파일럿)</span></td>
         <td><span class="p">연료 탱크</span><span class="m">수기 유지. logbook 의 발전기 운전시간 × SFOC 로 기대 소비량을 산출해 교차검증</span></td>
         <td><span class="m">일일 입력 정식화 · 기간 산출 자동 · 월 엑셀 폐지</span></td>
-        <td><span class="p">연료 공급/리턴 유량계 + 탱크 레벨(기본 사양)</span><span class="m">ICMS 태그 연결 — 분 단위 실측</span></td></tr>
+        <td><span class="p">연료 공급/리턴 유량계 + 탱크 레벨(기본 사양)</span><span class="m">ICMS 태그 연결 — 분 단위 실측. <b>사운딩은 필수 항목만 남긴다</b> — 수급 검수·이송 확인·유량계 오차 검증</span></td></tr>
       <tr><td><b>② 전기 사용량</b><br><span style="font-weight:400;font-size:11px">선내 총 부하</span></td>
         <td><span class="p">안벽 육전 접속점 적산 전력계</span><span class="m">누적 kWh 일 1회 판독 → 수기</span></td>
         <td><span class="p"><b>선박 shore connection box (가설)</b></span><span class="m">조선소 자산 측정기 15분 자동 → parquet. <b>육전 구간만 실측</b>되고 발전기 구간은 0 이다</span></td>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시운전 에너지 데이터 수집 로드맵 2026–2030</title>
+<meta name="description" content="총 에너지 비용 판단용 6종 데이터를 수기 취합에서 선박 데이터 직결까지 올리는 단계별 스윔레인. 원본: 01_시운전에너지모니터링_로드맵_v0.5.md §6">
+<style>
+  /* shi-blue 토큰 인라인 사본 — design-system-with-git/shi-blue/tokens.css 가 정본 */
+  :root {
+    --shi-accent: #0056D2; --shi-sidebar: #003087; --shi-sidebar2: #002257;
+    --bg-base: #EEF3FA; --bg-surface: #FFFFFF; --bg-surface2: #F5F7FB;
+    --text-primary: #0B1220; --text-muted: #58647C; --text-faint: #8693A8;
+    --border: #E6E9F0; --border-strong: #D6DAE6;
+    --success: #059669; --warning: #D97706; --gold: #FFC53D;
+    --tint-accent: #E3EDFB; --tint-none: #EDF0F5; --none-fg: #5C6880; --none-edge: #CFD6E2;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.05), 0 4px 12px rgba(15,23,42,.05);
+    --radius-sm: 8px; --radius-md: 12px; --radius-pill: 999px;
+    --sans: 'Pretendard', 'Pretendard Variable', -apple-system, 'Segoe UI Variable', 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    --mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    /* 세대 색 — 회색 → 연청 → 청 → 네이비 순으로 진해진다 */
+    --g0-bg: transparent;  --g0-fg: var(--text-faint); --g0-edge: var(--none-edge);
+    --g1-bg: var(--tint-none); --g1-fg: var(--none-fg); --g1-edge: var(--none-edge);
+    --g2-bg: var(--tint-accent); --g2-fg: #123F8A; --g2-edge: #B9D0F5;
+    --g3a-bg: #0056D2; --g3a-fg: #FFFFFF; --g3a-edge: #0056D2;
+    --g3b-bg: #003087; --g3b-fg: #FFFFFF; --g3b-edge: #003087;
+    --g3-bg: #002257; --g3-fg: #FFFFFF; --g3-edge: #002257;
+    --task-bg: #FFF7DD; --task-fg: #7A4B00; --task-edge: #E9B93A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-base: #0F1524; --bg-surface: #171E30; --bg-surface2: #1E2740;
+      --text-primary: #E8EDF7; --text-muted: #A5B0C6; --text-faint: #6F7B93;
+      --border: #2A3450; --border-strong: #3A4664;
+      --tint-accent: #1B2E55; --tint-none: #232B3E; --none-fg: #B4BDD0; --none-edge: #3A4664;
+      --g2-fg: #BFD4FA; --g2-edge: #2E4A80;
+      --task-bg: #3A2E10; --task-fg: #F2CF6B; --task-edge: #8A6A1E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg-base: #0F1524; --bg-surface: #171E30; --bg-surface2: #1E2740;
+    --text-primary: #E8EDF7; --text-muted: #A5B0C6; --text-faint: #6F7B93;
+    --border: #2A3450; --border-strong: #3A4664;
+    --tint-accent: #1B2E55; --tint-none: #232B3E; --none-fg: #B4BDD0; --none-edge: #3A4664;
+    --g2-fg: #BFD4FA; --g2-edge: #2E4A80;
+    --task-bg: #3A2E10; --task-fg: #F2CF6B; --task-edge: #8A6A1E;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg-base); color: var(--text-primary); font-family: var(--sans); font-size: 13px; line-height: 1.45; padding: 24px 16px 48px; word-break: keep-all; overflow-wrap: anywhere; }
+  .wrap { max-width: 1400px; margin: 0 auto; }
+
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 16px; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--text-muted); margin: 0; }
+  .sub b { color: var(--text-primary); }
+  .meta { color: var(--text-faint); font-size: 12px; font-family: var(--mono); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 0 0 14px; }
+  .legend .k { color: var(--text-muted); font-size: 12px; margin-right: 2px; }
+  .chip { display: inline-block; padding: 2px 9px; border-radius: var(--radius-pill); font-size: 11.5px; border: 1px solid; white-space: nowrap; }
+  .g0 { background: var(--g0-bg); color: var(--g0-fg); border-color: var(--g0-edge); border-style: dashed; }
+  .g1 { background: var(--g1-bg); color: var(--g1-fg); border-color: var(--g1-edge); }
+  .g2 { background: var(--g2-bg); color: var(--g2-fg); border-color: var(--g2-edge); }
+  .g3a { background: var(--g3a-bg); color: var(--g3a-fg); border-color: var(--g3a-edge); }
+  .g3b { background: var(--g3b-bg); color: var(--g3b-fg); border-color: var(--g3b-edge); }
+  .g3 { background: var(--g3-bg); color: var(--g3-fg); border-color: var(--g3-edge); }
+  .task { background: var(--task-bg); color: var(--task-fg); border-color: var(--task-edge); }
+
+  /* ── 스윔레인 그리드 ─────────────────────────────────────── */
+  .board { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; }
+  .grid { display: grid; grid-template-columns: 200px repeat(5, minmax(150px, 1fr)); }
+  .grid > div { padding: 8px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); min-height: 44px; }
+  .grid > div:nth-child(6n) { border-right: none; }
+
+  .yr { background: var(--shi-sidebar); color: #fff; font-weight: 700; font-size: 14px; text-align: center; border-color: rgba(255,255,255,.12) !important; }
+  .yr small { display: block; font-weight: 400; font-size: 11px; opacity: .8; margin-top: 2px; }
+  .corner { background: var(--shi-sidebar2); color: #fff; font-size: 12px; display: flex; align-items: flex-end; border-color: rgba(255,255,255,.12) !important; }
+
+  .phase { background: var(--bg-surface2); font-size: 12px; font-weight: 600; color: var(--text-muted); text-align: center; }
+  .phase .now { color: var(--text-faint); font-weight: 500; }
+  .ms { background: var(--bg-surface2); font-size: 11.5px; color: var(--text-muted); text-align: center; }
+  .ms b { display: inline-block; background: var(--gold); color: #3A2A00; border-radius: 4px; padding: 0 6px; font-family: var(--mono); font-size: 11px; margin-right: 4px; transform: rotate(0); }
+
+  .group { grid-column: 1 / -1; background: var(--tint-accent); color: #123F8A; font-weight: 700; font-size: 12px; padding: 5px 12px !important; min-height: 0 !important; letter-spacing: .02em; }
+  :root[data-theme="dark"] .group, :root:not([data-theme="light"]) .group { color: var(--g2-fg); }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .group { color: #123F8A; } }
+  .lab { font-weight: 600; display: flex; gap: 8px; align-items: flex-start; }
+  .lab .n { font-family: var(--mono); color: var(--shi-accent); font-size: 14px; line-height: 1.2; }
+  .lab small { display: block; font-weight: 400; color: var(--text-faint); font-size: 11px; margin-top: 2px; }
+
+  .cell { display: block; }
+  .cell .tag { display: block; margin-bottom: 3px; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--text-faint); }
+  .cell.g1 .tag { color: var(--none-fg); } .cell.g2 .tag { color: var(--g2-fg); }
+  .cell.g3a .tag, .cell.g3b .tag, .cell.g3 .tag { color: rgba(255,255,255,.75); }
+  .cell.task .tag { color: var(--task-fg); }
+  .cell { border-radius: 0; }
+  .cell.g1 { background: var(--g1-bg); color: var(--g1-fg); }
+  .cell.g2 { background: var(--g2-bg); color: var(--g2-fg); }
+  .cell.g3a { background: var(--g3a-bg); color: var(--g3a-fg); }
+  .cell.g3b { background: var(--g3b-bg); color: var(--g3b-fg); }
+  .cell.g3 { background: var(--g3-bg); color: var(--g3-fg); }
+  .cell.task { background: var(--task-bg); color: var(--task-fg); }
+  .cell.g0 { color: var(--text-faint); }
+  .cell code { font-family: var(--mono); font-size: 11px; }
+
+  .foot { color: var(--text-muted); font-size: 12px; margin: 12px 2px 0; }
+  .foot b { color: var(--text-primary); }
+
+  /* ── 하단 요약 ────────────────────────────────────────────── */
+  details { margin-top: 22px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▸ "; color: var(--shi-accent); }
+  details[open] summary::before { content: "▾ "; }
+  .inner { padding: 0 16px 16px; }
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .why > div { background: var(--bg-surface2); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .why h4 { margin: 0 0 4px; font-size: 12.5px; color: var(--shi-accent); }
+  .why p { margin: 0; color: var(--text-muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { border: 1px solid var(--border); padding: 7px 9px; vertical-align: top; text-align: left; }
+  th { background: var(--bg-surface2); font-weight: 700; }
+  td b { color: var(--text-primary); }
+  td .p { display: block; color: var(--text-muted); }
+  td .p::before { content: "지점 "; font-size: 10px; font-weight: 700; color: var(--shi-accent); }
+  td .m { display: block; }
+  td .m::before { content: "방법 "; font-size: 10px; font-weight: 700; color: var(--success); }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 140px repeat(5, minmax(130px, 1fr)); }
+    .board { overflow-x: auto; }
+    .grid { min-width: 900px; }
+  }
+  @media print {
+    @page { size: A3 landscape; margin: 10mm; }
+    body { background: #fff; padding: 0; font-size: 11px; }
+    .board, details { box-shadow: none; }
+    details { break-before: page; }
+    details[open] summary::before { content: ""; }
+    .g3a, .g3b, .g3, .yr, .corner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>시운전 에너지 데이터 수집 로드맵 2026–2030</h1>
+    <p class="sub">안벽 호선을 매 시각 <b>육전으로 둘지 발전기로 돌릴지</b> — <b>총 에너지 비용(전기요금+유류비)이 싼 쪽</b>을 고르는 데 필요한 <b>6종 데이터</b>를 수기 취합 → 선박 데이터 직결로 올리는 계획</p>
+  </div>
+  <div class="meta">시운전팀 · 2026-09-23 · v0.5 · 사내한</div>
+</header>
+
+<div class="legend">
+  <span class="k">수집 방법</span>
+  <span class="chip g0">없음 / 부분</span>
+  <span class="chip g1">수기 (logbook · 사운딩)</span>
+  <span class="chip g2">조선소 계측기 · 반자동 · 기존 시스템 연동</span>
+  <span class="chip g3a">3단계 SVESSEL 탑재 호선 수신</span>
+  <span class="chip g3b">4단계 ICMS 선별 태그 송출</span>
+  <span class="chip g3">표준 (전 호선 자동)</span>
+  <span class="chip task">당사 숙제 · 벤더 협의(영업 경유)</span>
+</div>
+
+<div class="board">
+<div class="grid">
+
+  <div class="corner">데이터 ＼ 단계</div>
+  <div class="yr">1단계<small>현재 (2026-09)</small></div>
+  <div class="yr">2단계 · 2026 목표<small>logbook + shore connection 측정기</small></div>
+  <div class="yr">3단계 · 2027<small>피크 절체 시범 · SVESSEL 수신</small></div>
+  <div class="yr">4단계 · 2028<small>ICMS 선별 태그 송출</small></div>
+  <div class="yr">표준 · 2029–30<small>전 호선 자동 · 무인 판단</small></div>
+
+  <div class="group">유류 트랙</div>
+  <div class="lab"><span class="n">①</span><div>유류 사용량<small>탱크 사운딩 → 유량계</small></div></div>
+  <div class="cell g1"><span class="tag">수기</span>기간(일정구분) 취합 엑셀 + 일 1회 사운딩 앱 파일럿(<code>test_</code>)</div>
+  <div class="cell g1"><span class="tag">수기 유지</span>logbook 의 발전기 운전시간 × SFOC 로 기대 소비량 교차검증</div>
+  <div class="cell g3a"><span class="tag">정식 + SVESSEL</span>일일 입력 정식 · 기간 산출 자동 · 엑셀 폐지 · SVESSEL 2척 유량계 값 수신</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>미탑재 호선 ICMS 유량 송출</div>
+  <div class="cell g3"><span class="tag">표준</span>전 호선 자동 · 사운딩 폐지 · 대체연료 포함</div>
+
+  <div class="group">전기 트랙</div>
+  <div class="lab"><span class="n">②</span><div>육상전력<small>shore connection</small></div></div>
+  <div class="cell g1"><span class="tag">수기</span>접속점 적산계 누적 kWh 일 1회 (앱 밖)</div>
+  <div class="cell g2"><span class="tag">측정기 · 자동</span><b>shore connection 측정기</b> 15분 자동 → parquet</div>
+  <div class="cell g2"><span class="tag">정렬</span>조선소 수요전력과 시각 정렬 · SVESSEL 호선은 PMS 값과 교차검증</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>PMS 육전 수전 kW 송출(교차검증)</div>
+  <div class="cell g3"><span class="tag">표준</span>실시간 · 피크 여유 표시</div>
+
+  <div class="lab"><span class="n">③</span><div>발전기 생산 전력<small>PMS 발전기별 kW</small></div></div>
+  <div class="cell g0">없음</div>
+  <div class="cell g1"><span class="tag">logbook</span>운전일지 — 기동/정지 · 부하% · 대수</div>
+  <div class="cell g3a"><span class="tag">SVESSEL</span>PMS 발전기별 kW·kWh 수신 (파일럿)</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>선별 태그 송출 — PMS kW · 차단기 상태</div>
+  <div class="cell g3"><span class="tag">표준</span>실시간 · 실측 SFOC(①×③)</div>
+
+  <div class="group">부가 속성 — 유류·전력 값에 붙는 태그 (2단계는 logbook 이 한꺼번에)</div>
+  <div class="lab"><span class="n">④</span><div>가동 장비<small>원천 태그 SHORE/GEN</small></div></div>
+  <div class="cell g0">연료 감소 시에만 장비+대수</div>
+  <div class="cell g1"><span class="tag">logbook</span>일별 체크리스트 + 원천 태그 (항목 6~8종)</div>
+  <div class="cell g3a"><span class="tag">SVESSEL</span>ICMS 장비 운전 상태 (파일럿)</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>운전 상태 송출로 자동</div>
+  <div class="cell g3"><span class="tag">표준</span>자동 · 장비별 원단위</div>
+
+  <div class="lab"><span class="n">⑤</span><div>운전방법<small>모드 코드 5종</small></div></div>
+  <div class="cell g0">없음</div>
+  <div class="cell g2"><span class="tag">logbook + 측정기</span>절체 기록(모드·시각) + 측정기 전류 0 으로 절체 추정</div>
+  <div class="cell g3a"><span class="tag">SVESSEL</span>PMS 차단기 상태로 절체 자동 (파일럿)</div>
+  <div class="cell g3b"><span class="tag">ICMS</span>차단기 상태 송출로 자동</div>
+  <div class="cell g3"><span class="tag">표준</span>자동 · 모드 체류 통계</div>
+
+  <div class="lab"><span class="n">⑥</span><div>발전기 가동 사유<small>사유 코드 5종</small></div></div>
+  <div class="cell g0">4종 · 연료 감소 시에만</div>
+  <div class="cell g1"><span class="tag">logbook · 레버 A 열쇠</span>사유 코드 5종 · 매 기동 필수 → <b>불가피</b>(<code>TRIAL</code>·<code>LOAD_TEST</code>·<code>SHORE_NA</code>) / <b>확인 대상</b>(<code>ETC</code>) 분류</div>
+  <div class="cell g2"><span class="tag">절감 실행</span>확인 대상 가동 축소(레버 A) · <code>PEAK_CUT</code> 기록 · 사유별 kWh·L 집계</div>
+  <div class="cell g3b"><span class="tag">자동 태깅</span><code>TRIAL</code>·<code>LOAD_TEST</code> 는 process 순서도에서</div>
+  <div class="cell g3"><span class="tag">표준</span><code>PEAK_CUT</code> 관제 자동 · <code>SHORE_NA</code>·<code>ETC</code> 만 수기</div>
+
+  <div class="group">기반 — 판단식 참조 데이터 · 송출 태그</div>
+  <div class="lab"><span class="n">참조</span><div>조선소 수요전력 · 요금표<small>시스템 이미 있음 · <b>레버 B 에만</b> 필요</small></div></div>
+  <div class="cell g0">시스템 있음 · 미연동 · 요금표 없음</div>
+  <div class="cell g2"><span class="tag">연동</span>수요전력 시스템 15분 값 수신 + 전기요금표 등록</div>
+  <div class="cell g2"><span class="tag">시범</span><b>피크 절체 시범</b>(관제 수동 지시) · 절감 효과 산정</div>
+  <div class="cell g3b"><span class="tag">통합</span>관제 화면에 호선 부하·피크 여유 통합</div>
+  <div class="cell g3"><span class="tag">활용</span>피크컷 자동 지시</div>
+
+  <div class="lab"><span class="n">태그</span><div>송출 태그 선별 · 협의<small>PMS·ICMS 는 기본 사양</small></div></div>
+  <div class="cell g0">—</div>
+  <div class="cell task"><span class="tag">당사 숙제</span>태그 선별 초안 — 6종 → ICMS/PMS 태그 목록</div>
+  <div class="cell task"><span class="tag">당사 숙제 → 협의</span>SVESSEL 커버리지 확인 · 송출 표준 사양 · 벤더 협의 착수(영업)</div>
+  <div class="cell task"><span class="tag">적용</span>선별 태그 송출 프로그래밍 적용</div>
+  <div class="cell task"><span class="tag">확정</span>표준 사양 확정 — 호선마다 재협의 없음</div>
+
+  <div class="corner" style="align-items:center">마일스톤</div>
+  <div class="ms"><span class="now">현황 확정</span></div>
+  <div class="ms"><b>M1</b>6종 전부 존재 · 절체 판단 가능</div>
+  <div class="ms"><b>M2</b>절감 효과 산정 · SVESSEL 2척</div>
+  <div class="ms"><b>M3</b>ICMS 송출 · 절체 자동 감지</div>
+  <div class="ms"><b>M4</b>절체 판단 무개입</div>
+
+</div>
+</div>
+
+<p class="foot">셀 = <b>그 단계에 도달하는 수집 방법</b>. 절감 레버는 둘이다 — <b>레버 A</b> 평시 불필요 발전기 가동 축소(유류비, ③⑥ 만으로 가능해 수요전력 연동을 기다리지 않는다) · <b>레버 B</b> 피크 절체(기본요금, 측정기+연동 필요). 2단계가 끝나면 둘 다 판단 가능해진다. 3·4단계는 새 계측기를 다는 일이 아니라 <b>배가 이미 갖고 있는 PMS·ICMS 값을 밖으로 내보내는 일</b>이고, 지점이 같고 전송 경로만 다르다. 원본: <code>01_시운전에너지모니터링_로드맵_v0.5.md</code> §6.</p>
+
+<details open>
+  <summary>왜 발전기를 돌리는가 — 판단 구조</summary>
+  <div class="inner why">
+    <div><h4>택1</h4><p>호선 급전은 어느 시각이든 육전 아니면 발전기 하나. 전력 사용량 ↑ ⇔ 유류 사용량 ↓.</p></div>
+    <div><h4>비용 구조가 다르다</h4><p>전기요금 = 기본요금(<b>피크 kW</b> × 단가 × 산정 개월) + 전력량요금. 유류비 = L × 유가. 평시 kWh 단가는 육전이 싸다.</p></div>
+    <div><h4>발전기의 용도 = 피크 컷</h4><p>조선소 피크 시간대에 호선을 발전기로 절체하면 피크가 내려가 기본요금이 준다. 기본요금 절감 &gt; 그 시간대 연료비 증가면 이득.</p></div>
+    <div><h4>그래서 6종이 같은 시각 축에 있어야</h4><p>"지금 이 호선이 어느 원천으로, 몇 kW 를, 왜 쓰고 있나"를 15분 단위로 답할 수 있어야 절체 판단이 된다.</p></div>
+  </div>
+</details>
+
+<details>
+  <summary>측정 지점 · 방법 요약 (단계별)</summary>
+  <div class="inner">
+  <table>
+    <thead><tr><th style="width:130px">데이터</th><th>1단계 · 현재</th><th>2단계 · 2026 (logbook · 측정기)</th><th>3단계 · SVESSEL 탑재 호선</th><th>4단계 · ICMS 송출 호선</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 유류 사용량</b></td>
+        <td><span class="p">연료 탱크(사운딩 파이프)</span><span class="m">기간 시작·끝 잔량 차이 + 수급량 → 월 엑셀(정식) · 일 1회 사운딩 앱 입력(파일럿)</span></td>
+        <td><span class="p">연료 탱크</span><span class="m">수기 유지. logbook 의 발전기 운전시간 × SFOC 로 기대 소비량을 산출해 교차검증</span></td>
+        <td><span class="p">주기관·발전기 연료 공급/리턴 유량계 + 탱크 레벨 센서(기본 사양)</span><span class="m">ICMS → SVESSEL → 사내 API</span></td>
+        <td><span class="p">동일</span><span class="m">ICMS 선별 태그 송출 → 조선소 수신 게이트웨이</span></td></tr>
+      <tr><td><b>② 육상전력</b></td>
+        <td><span class="p">안벽 육전 접속점 적산 전력계</span><span class="m">누적 kWh 일 1회 판독 → 수기</span></td>
+        <td><span class="p"><b>선박 shore connection box</b></span><span class="m">조선소 자산 측정기 15분 자동 → parquet. 선박 쪽이라 호선별 분리가 자연히 된다</span></td>
+        <td><span class="p">선내 육전 수전반 전력계 → PMS</span><span class="m">SVESSEL. 육상 계측기가 있으므로 교차검증 용도</span></td>
+        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
+      <tr><td><b>③ 발전기 생산 전력</b></td>
+        <td>없음</td>
+        <td><span class="p">발전기 패널 계기(배전반 kW 미터)</span><span class="m"><b>logbook</b> 운전일지 — 기동/정지 시각 · 부하% · 대수 수기</span></td>
+        <td><span class="p">발전기별 ACB 패널 전력계 → PMS(기본 사양)</span><span class="m">SVESSEL</span></td>
+        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
+      <tr><td><b>④ 가동 장비</b></td>
+        <td><span class="m">연료 감소 시에만 장비+대수 선택</span></td>
+        <td><span class="p">없음(작업자 기억)</span><span class="m">logbook 일별 체크리스트 + 원천 태그(항목 6~8종)</span></td>
+        <td><span class="p">ICMS 장비 운전 상태(running/stop)</span><span class="m">SVESSEL</span></td>
+        <td><span class="p">동일</span><span class="m">ICMS 선별 태그 송출</span></td></tr>
+      <tr><td><b>⑤ 운전방법</b></td>
+        <td>없음</td>
+        <td><span class="p">shore connection 측정기</span><span class="m">logbook 절체 기록(모드·시각) + 측정기 전류 0 여부로 절체 추정</span></td>
+        <td><span class="p">PMS 차단기 상태(육전 ACB · 발전기 ACB · 버스타이)</span><span class="m">SVESSEL → 절체 이벤트 자동</span></td>
+        <td><span class="p">동일</span><span class="m">PMS → ICMS 선별 태그 송출</span></td></tr>
+      <tr><td><b>⑥ 발전기 가동 사유</b></td>
+        <td><span class="m">사유 4종, 연료 감소 시에만</span></td>
+        <td><span class="m">logbook 매 기동 사유 코드 5종 필수</span></td>
+        <td colspan="2"><span class="m"><code>TRIAL</code>·<code>LOAD_TEST</code> → process 순서도에서 자동 / <code>PEAK_CUT</code> → 관제 지시에서 자동 / <code>SHORE_NA</code>·<code>ETC</code> 만 수기</span></td></tr>
+      <tr><td><b>참조 수요전력</b></td>
+        <td><span class="m">조선소 전력관리 시스템(한전 15분) 있음 · 미연동</span></td>
+        <td><span class="m"><b>연동</b> — 15분 값을 parquet 으로 수신 + 전기요금표 등록</span></td>
+        <td colspan="2"><span class="m">피크 절체 시범(3단계) → 관제 자동 지시(표준)</span></td></tr>
+    </tbody>
+  </table>
+  <p class="foot">3·4단계 공통 선행 작업: <b>송출 태그 선별</b>(당사 숙제) — 위 표의 3단계 "지점" 열이 곧 태그 목록의 골격이다.</p>
+  </div>
+</details>
+
+</div>
+</body>
+</html>

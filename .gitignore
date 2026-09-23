@@ -1,0 +1,27 @@
+# secrets (커밋 금지)
+.env
+*.env
+.env.*
+secret/
+*.key
+*.pem
+
+# 데이터 산출물 (parquet 은 data_manager_F 만 생산 — repo 에 넣지 않는다)
+*.parquet
+parquet/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# office 임시 파일
+~$*

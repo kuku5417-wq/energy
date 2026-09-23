@@ -106,6 +106,31 @@
   .cell.g0 { color: var(--text-faint); }
   .cell code { font-family: var(--mono); font-size: 11px; }
 
+  /* ── 상단 요약 로드맵 — 변화 × 3줄 (03 경영보고와 같은 뼈대) ── */
+  .rm { display: grid; grid-template-columns: 96px repeat(4, 1fr); background: var(--bg-surface);
+        border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 8px; }
+  .rm > div { padding: 11px 13px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-size: 12.5px; line-height: 1.45; }
+  .rm > div:nth-child(5n) { border-right: none; }
+  .rm > div:nth-child(n+16) { border-bottom: none; }
+  .rm .hd { background: var(--shi-sidebar); color: #fff; font-weight: 700; font-size: 13.5px; text-align: center; padding: 13px 10px;
+            border-right-color: rgba(255,255,255,.14); border-bottom-color: rgba(255,255,255,.14); }
+  .rm .hd small { display: block; font-weight: 400; font-size: 10.5px; opacity: .82; margin-top: 2px; }
+  .rm .hd.corner, .rm .hd.now { background: var(--shi-sidebar2); }
+  .rm .lb { background: var(--bg-surface2); font-weight: 700; color: var(--shi-sidebar); font-size: 11.5px; display: flex; align-items: center; }
+  .rm .c { color: var(--text-muted); }
+  .rm .c b { color: var(--text-primary); }
+  .rm .c.dim { background: var(--bg-surface2); }
+  .rm .c.gain { background: var(--tint-accent); color: #123F8A; font-weight: 700; }
+  .rm .c.gain.none { background: var(--bg-surface2); color: var(--text-faint); font-weight: 400; }
+  .rm .c .step { display: block; font-size: 10px; font-weight: 700; letter-spacing: .04em; color: var(--shi-accent); margin-bottom: 3px; }
+  :root[data-theme="dark"] .rm .c.gain, :root:not([data-theme="light"]) .rm .c.gain { color: var(--g2-fg); }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .rm .c.gain { color: #123F8A; } }
+
+  .lead2 { color: var(--text-muted); font-size: 12.5px; margin: 0 2px 18px; }
+  .lead2 b { color: var(--text-primary); }
+  h2.sec { font-size: 15px; color: var(--text-primary); margin: 26px 2px 8px; }
+  h2.sec small { display: block; font-weight: 400; font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
   .foot { color: var(--text-muted); font-size: 12px; margin: 12px 2px 0; }
   .foot b { color: var(--text-primary); }
 
@@ -154,6 +179,37 @@
   </div>
   <div class="meta">시운전팀 · 2026-09-23 · v0.5 · 사내한</div>
 </header>
+
+<!-- ── 1) 한눈에 — 무엇이 바뀌면 무엇을 할 수 있게 되는가 ── -->
+<div class="rm">
+  <div class="hd corner"></div>
+  <div class="hd now">지금<small>2026 상반기</small></div>
+  <div class="hd">2026<small>재기 시작한다</small></div>
+  <div class="hd">2027<small>1년치가 쌓인다</small></div>
+  <div class="hd">2028 이후<small>배가 스스로 잰다</small></div>
+
+  <div class="lb">무엇이<br>바뀌나</div>
+  <div class="c dim">바뀌는 것 없음. 사람이 하루 한 번 연료만 적는다</div>
+  <div class="c"><span class="step">우리가 만드는 변화</span><b>logbook</b> 발전기 운전일지 + 호선 <b>shore connection 측정기</b> + 조선소 <b>수요전력 시스템 연동</b></div>
+  <div class="c"><span class="step">데이터가 쌓인다</span>호선별·시간대별로 비교 가능한 <b>1년치</b>. 유류 일일 입력 정식화(엑셀 폐지)</div>
+  <div class="c"><span class="step">선박 기술 변화</span><b>SVESSEL 탑재 호선 확대</b> → 사내 API 수신. 이어서 <b>ICMS 선별 태그 송출</b>로 나머지 호선까지</div>
+
+  <div class="lb">그래서<br>할 수 있는 일</div>
+  <div class="c dim">없다. 월말에 총량만 안다</div>
+  <div class="c">어느 전원으로 얼마를 <b>왜</b> 썼는지 시간대별로 본다 · 불가피/확인대상 가동 분류</div>
+  <div class="c"><b>레버 A</b> 확인대상 가동 축소 · <b>레버 B</b> 피크 절체 시범</div>
+  <div class="c">수기 없이 데이터가 들어온다 · 관제 실시간 판단 · 피크컷 자동 지시</div>
+
+  <div class="lb">얻는 것</div>
+  <div class="c gain none">—</div>
+  <div class="c gain">판단 데이터 확보<br>평시 가동 실태 파악</div>
+  <div class="c gain">총비용 절감액 실측<br>유류비 + 기본요금</div>
+  <div class="c gain">수기 입력 없이<br>상시 최적 운전</div>
+</div>
+<p class="lead2"><b>2026·2027 은 우리가 만드는 변화</b>(앱·측정기·연동), <b>2028 이후는 선박 기술 흐름에 올라타는 것</b>(PMS·ICMS 는 전 호선 기본 사양이라 계측이 아니라 <b>송출</b>만 하면 된다).
+ 절감 레버는 둘 — <b>레버 A</b> 평시 불필요 발전기 가동 축소(유류비, ③⑥ 만으로 가능해 수요전력 연동을 기다리지 않는다) · <b>레버 B</b> 피크 절체(기본요금, 측정기+연동 필요).</p>
+
+<h2 class="sec">2) 항목별 상세 — 6종 데이터가 단계마다 어떻게 수집되나<small>위 로드맵을 데이터 항목으로 펼친 것. 셀 = 그 단계에 도달하는 수집 방법</small></h2>
 
 <div class="legend">
   <span class="k">수집 방법</span>
@@ -246,7 +302,7 @@
 </div>
 </div>
 
-<p class="foot">셀 = <b>그 단계에 도달하는 수집 방법</b>. 절감 레버는 둘이다 — <b>레버 A</b> 평시 불필요 발전기 가동 축소(유류비, ③⑥ 만으로 가능해 수요전력 연동을 기다리지 않는다) · <b>레버 B</b> 피크 절체(기본요금, 측정기+연동 필요). 2단계가 끝나면 둘 다 판단 가능해진다. 3·4단계는 새 계측기를 다는 일이 아니라 <b>배가 이미 갖고 있는 PMS·ICMS 값을 밖으로 내보내는 일</b>이고, 지점이 같고 전송 경로만 다르다. 원본: <code>01_시운전에너지모니터링_로드맵_v0.5.md</code> §6.</p>
+<p class="foot">단계는 반년씩 겹친다(앞 단계 안정화 + 다음 단계 파일럿 병행). 2026 이 끝나면 레버 A·B 둘 다 판단 가능해진다. 3·4단계는 새 계측기를 다는 일이 아니라 <b>배가 이미 갖고 있는 PMS·ICMS 값을 밖으로 내보내는 일</b>이고, 지점이 같고 전송 경로만 다르다. 원본: <code>01_시운전에너지모니터링_로드맵_v0.5.md</code> §6.</p>
 
 <details open>
   <summary>왜 발전기를 돌리는가 — 판단 구조</summary>
